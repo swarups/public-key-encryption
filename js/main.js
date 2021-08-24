@@ -29,3 +29,21 @@ function decryptTheMessagePhp() {
         });
     }
 }
+
+function processTheMessageWithPhp() {
+    if ($('#message_plain').val()) {
+        $.post('encrypt-decrypt.php',
+            { message: $('#message_plain').val(), key: $('#pub_key').val() },
+            function (data, textStatus, jqXHR) {  // success callback
+                console.log(data);
+            if (textStatus === 'success') {
+                $('#encrypted_message_contianer').html(data.encrypted);
+                $('#decrypted_message_contianer').html(data.decrypted || "");
+            } else {
+                $('#encrypted_message_contianer').html('Unknown error occured!');
+                $('#decrypted_message_contianer').html('Unknown error occured!');
+            }
+            $('.encrypted-area, .decrypted-area').show();
+        }, 'JSON');
+    }
+}

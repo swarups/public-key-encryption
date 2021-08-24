@@ -6,7 +6,7 @@
 session_start();
 
 $config = array(
-    "private_key_bits" => 512,
+    "private_key_bits" => 1024,
 );
 
 // Create the private and public key
